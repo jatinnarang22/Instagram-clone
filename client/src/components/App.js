@@ -8,6 +8,7 @@ import SignIn from "./SignIn.js";
 import Profile from "./Profile.js";
 import Home from "./Home.js";
 import Posts from "./Posts.js";
+import Modal from "./Modal";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 
@@ -16,13 +17,14 @@ import "react-toastify/dist/ReactToastify.css"
 const LoginContext = createContext(false); 
 function App() {
 
-  const [isauth, setisauth] = useState("false");
+  const [isauth, setisauth] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <LoginContext.Provider value={{setisauth}}>
-        <Navbar login={isauth} />
+        <LoginContext.Provider value={{setisauth, setModalOpen}}>
+        <Navbar login={isauth} setModalOpen={setModalOpen} />
 
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -31,7 +33,7 @@ function App() {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/createpost" element={<Posts />}></Route>
         </Routes>
-
+        {modalOpen && <Modal setisauth={setisauth} setModalOpen={setModalOpen}></Modal>}
         </LoginContext.Provider>
       </div>
       <ToastContainer 

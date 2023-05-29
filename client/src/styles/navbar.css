@@ -8,9 +8,23 @@ img{
     display: flex;
     justify-content: space-around;
     box-shadow: 1px 1px 10px #D5FF40;
+    
+}
+.primarybtn{
+    cursor: pointer;
+    font-weight: bolder;
+    padding: 13px 25px;
+    font-size: 0.8rem;
+    border: none;
+    color:#191919;
+    background-color: #D5FF40 ;
+    border-radius: 15px;
+    margin-left: 20px;
+    transition: all 0.25s ease;
 }
 ul{
     display: flex;
+    align-items: center;
 }
 li{
     list-style: none;
@@ -20,4 +34,8 @@ a{
     text-decoration: none;
     color: #d5FF40;
     font-size: 18px;
+}
+.primarybtn:hover{
+    transform: translateY(-5px) ;
+    box-shadow: 0 10px 20px -10px#d5FF40;
 }

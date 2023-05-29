@@ -1,11 +1,20 @@
-import React ,{useContext} from "react";
+import React ,{useContext, useState, useEffect} from "react";
 import "../styles/navbar.css";
 import logo from "../img/logo.png";
 import { Link } from "react-router-dom";
 import {LoginContext} from "./App"
-export default function Navbar({login}) {
+export default function Navbar({login,setModalOpen}) {
+  const [token, setToken] = useState(null);
+
+    useEffect(() => {
+      setToken(localStorage.getItem("cookie"));
+    }, [])
   const loginStatus=()=>{
-    const token = localStorage.getItem("cookie");
+    // const setModalOpen;
+    // const { setModalOpen } = useContext(LoginContext);
+    // const token = localStorage.getItem("cookie");
+    console.log(token);
+    console.log(login);
     if(token || login){
       return [
         <>
@@ -14,6 +23,9 @@ export default function Navbar({login}) {
         </Link>
         <Link rel="stylesheet" to="/createpost">
           <li>CreatePosts</li>
+        </Link>
+        <Link rel="stylesheet" to="">
+          <button className="primarybtn" onClick={() =>  setModalOpen(true)}>Log Out</button>
         </Link>
         </>
       ]
