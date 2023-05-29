@@ -1,0 +1,36 @@
+.create-posts {
+  max-width: 500px;
+  margin: 10px auto;
+  border: 1px solid #d5ff40;
+  border-radius: 5px;
+  background-color: #292525;
+  color: #d5ff40;
+}
+
+.main-div{
+    border-top:1px solid #d5ff40 ;
+}
+.post-header{
+    display: flex;
+
+}
+#post-btn{
+    border:none;
+    color:#339ce3;
+    background: none;
+    font-weight: bolder;
+    cursor: pointer;
+
+}
+#output{
+    width: 60%;
+}
+.details{
+    border-top:1px solid #d5ff40 ;
+}
+textarea{
+    width: 90%;
+    border: none;
+    outline: none;
+    background-color: #292525;
+}

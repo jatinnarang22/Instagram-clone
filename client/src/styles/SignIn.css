@@ -1,0 +1,41 @@
+.signin{
+    background-color: #191919;
+   background-size: cover;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.signInLogo{
+    width: 200px;
+    object-fit:contain;
+    padding:10px 10px
+}
+.loginForm{
+    background-color: #292525;
+    padding: 30px;
+    border: 1px solid #D5FF40;
+    border-radius: 5px;
+}
+.signInLogo{
+    margin-bottom: 30px;
+}
+.loginForm2{
+    margin-top: 30px;
+    background-color: #292525;
+    padding: 15px;
+    margin-top:5px;
+    color: #D5FF40;
+    border-radius: 5px;
+}
+#login-btn{
+    background-color: #D5FF40;
+    border: none;
+    border-radius: 9px;
+    color:black ;
+    font-weight: bold;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-bottom: 40px;
+}
