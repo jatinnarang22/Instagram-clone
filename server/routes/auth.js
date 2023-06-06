@@ -3,17 +3,7 @@ const router = express.Router();
 const User = require("../model/User");
 
 const bcrypt = require("bcrypt");
-router.get("/", (req, res) => {
-  res.send("hello");
-});
-router.get("signin", async (req, res) => {
-  if (req.isAuthenticated) res.json({ done: "user is Authenticated" });
-  res.send("signin page");
-});
-router.get("/signup", async (req, res) => {
-  if (req.isAuthenticated) res.json({ done: "user is Authenticated" });
-  res.send("signup page");
-});
+
 
 router.post("/create", async (req, res) => {
   try {
@@ -65,7 +55,9 @@ router.post("/create-session", async (req, res) => {
       res.cookie("user_id", user._id);
       const localstore = user._id;
       console.log(localstore);
-      return res.send(localstore);
+      const userid = user._id;
+      const name = user.name;
+      return res.send({localstore,user:{userid,name, email } });
       //   res.redirect("/chat");
     } else {
       return res.send({error:"error u have to first signup"});

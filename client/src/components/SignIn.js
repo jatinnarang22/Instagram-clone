@@ -36,9 +36,9 @@ export default function SignIn() {
       }
         else {
           successtoast("Signed In Successfully")
-          console.log(data)
-          localStorage.setItem("cookie", data)
-
+          console.log(data,"show ");
+          localStorage.setItem("cookie", data.localstore);
+          localStorage.setItem("user", JSON.stringify( data.user));
           setisauth(true)
           navigate("/");
         }
