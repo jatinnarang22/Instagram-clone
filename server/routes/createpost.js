@@ -134,5 +134,18 @@ router.put("/comment",(req,res)=>{
 
 })
 
+// api delete post
+router.delete("/deletePost/:postId",(req,res)=>{
+  console.log(req.params.postId);
+  Post.findByIdAndRemove(req.params.postId)
+  .then(result => {
+    return res.json({ message: "Successfully deleted" })
+  })
+  .catch((err)=>{
+    return res.status(422).json({error:err})
+  })
+})
+
+
 
 module.exports = router;

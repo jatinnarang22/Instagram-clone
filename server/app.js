@@ -9,6 +9,7 @@ const User=require('./model/User');
 const Post=require("./model/posts")
 
 const auth = require("./routes/auth");
+const user = require("./routes/user");
 const createPost = require("./routes/createpost");
 mongoose.set("strictQuery",true);
 mongoose.connect('mongodb://127.0.0.1:27017/Instgram')
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public"))); //static files
 app.use(auth);
 app.use(createPost)
+app.use(user);
 app.use(cookieParser());
 
 app.use(async (req,res,next)=>{

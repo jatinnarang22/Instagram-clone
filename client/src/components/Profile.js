@@ -1,7 +1,24 @@
 import React,{useState,useEffect} from "react";
 import "../styles/Profile.css";
+import PostDetail from "./PostDetail";
 export default function Profile() {
   const [pic, setpic] = useState([])
+  const [show, setshow] = useState(false);
+  const [post, setpost] = useState([]);
+
+   // to show and hide comments
+   const toggleDetails = (posts) =>{
+    if(show){
+      setshow(false);
+    }
+    else{
+      console.log(posts);
+      setpost(posts);
+       setshow(true);
+    }
+  }
+
+
   useEffect(() => {
     fetch("http://localhost:5000/myposts",{
       headers:{
@@ -33,9 +50,15 @@ export default function Profile() {
       {/* gallery */}
       <div className="gallery">
         {pic.map((pic)=>{
-          return <img key={pic._id} src={pic.photo} className="items"></img>
+          return <img key={pic._id} src={pic.photo} className="items" onClick={()=>{
+            toggleDetails(pic);           
+          }}></img>
         })}
       </div>
+      {show && 
+      <PostDetail item={post} toggleDetails={toggleDetails}></PostDetail>
+      }
+      
     </div>
   );
 }

@@ -23,6 +23,7 @@ export default function SignIn() {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("cookie"),
       },
       body: JSON.stringify({
         email:email,
