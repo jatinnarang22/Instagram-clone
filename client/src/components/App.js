@@ -11,6 +11,7 @@ import Posts from "./Posts.js";
 import Modal from "./Modal";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
+import UserProfile from "./UserProfile";
 
 
 
@@ -30,8 +31,9 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/signin" element={<SignIn />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
+          <Route exact  path="/profile" element={<Profile />}></Route>
           <Route path="/createpost" element={<Posts />}></Route>
+          <Route path="/profile/:userid" element={<UserProfile />}></Route>
         </Routes>
         {modalOpen && <Modal setisauth={setisauth} setModalOpen={setModalOpen}></Modal>}
         </LoginContext.Provider>

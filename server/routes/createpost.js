@@ -21,8 +21,11 @@ router.get("/myposts", async (req, res) => {
 });
 router.get("/allPosts", (req, res) => {
   Post.find()
-    .populate("postedBy", "_id , name").populate("comments.postedBy","_id name")
-    .then((posts) => res.json(posts))
+  .populate("postedBy", "_id name Photo username")
+  .populate("comments.postedBy", "_id name")
+    .then((posts) => { 
+      console.log(posts);
+      return res.json(posts)})
     .catch((err) => console.log(err));
 });
 
@@ -77,12 +80,13 @@ router.put("/like", (req, res) => {
     {
       new: true,
     }
-  ).then((result) => {
-    res.json(result);
-  })
-  .catch((err) => {
-    return res.status(422).json({ error: err });
-  });
+  ).populate("postedBy", "_id name Photo username ")
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      return res.status(422).json({ error: err });
+    });
 });
 router.put("/unlike", (req, res) => {
   const { authorization } = req.headers;
@@ -99,12 +103,14 @@ router.put("/unlike", (req, res) => {
     {
       new: true,
     }
-  ).then((result) => {
-    res.json(result);
-  })
-  .catch((err) => {
-    return res.status(422).json({ error: err });
-  });
+  ).populate("postedBy", "_id name Photo username")
+    .then((result) => {
+      console.log(result);
+      res.json(result);
+    })
+    .catch((err) => {
+      return res.status(422).json({ error: err });
+    });
 });
 router.put("/comment",(req,res)=>{
   const { authorization } = req.headers;
@@ -125,7 +131,10 @@ router.put("/comment",(req,res)=>{
       $push: { comments: comment }
     },{
       new :true,
-    }).populate("comments.postedBy","_id name").then((result) => {
+    }).populate("comments.postedBy","_id name")
+    .populate("postedBy", "_id name Photo")
+    .then((result) => {
+      console.log(result)
       res.json(result);
     })
     .catch((err) => {
@@ -135,17 +144,16 @@ router.put("/comment",(req,res)=>{
 })
 
 // api delete post
-router.delete("/deletePost/:postId",(req,res)=>{
+router.delete("/deletePost/:postId", (req, res) => {
   console.log(req.params.postId);
   Post.findByIdAndRemove(req.params.postId)
-  .then(result => {
-    return res.json({ message: "Successfully deleted" })
-  })
-  .catch((err)=>{
-    return res.status(422).json({error:err})
-  })
-})
-
+    .then((result) => {
+      return res.json({ message: "Successfully deleted" });
+    })
+    .catch((err) => {
+      return res.status(422).json({ error: err });
+    });
+});
 
 
 module.exports = router;
